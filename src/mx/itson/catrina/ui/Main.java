@@ -1,5 +1,6 @@
-package mx.itson.morgana.ui;
+package mx.itson.catrina.ui;
 
+import mx.itson.catrina.entidades.*;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -9,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
-import mx.itson.catrina.entidades.Estado;
-import mx.itson.catrina.entidades.Movimiento;
 
 /**
  *
@@ -679,6 +678,7 @@ public class Main extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
