@@ -5,7 +5,7 @@ package mx.itson.catrina.entidades;
  * @author jesus
  */
 public class Cliente {
-    
+
     private int codigo;
     private String nombre;
     private String domicilio;
@@ -15,6 +15,7 @@ public class Cliente {
 
     /**
      * Obtiene el codigo de cliente.
+     *
      * @return El codigo de cliente.
      */
     public int getCodigo() {
@@ -23,6 +24,7 @@ public class Cliente {
 
     /**
      * Le da un numero de codigo al cliente.
+     *
      * @param codigo El codigo del cliente.
      */
     public void setCodigo(int codigo) {
@@ -31,6 +33,7 @@ public class Cliente {
 
     /**
      * Obtiene el nombre del cliente.
+     *
      * @return El nombre del cliente.
      */
     public String getNombre() {
@@ -39,6 +42,7 @@ public class Cliente {
 
     /**
      * Le da un nombre al cliente.
+     *
      * @param nombre Nombre del cliente.
      */
     public void setNombre(String nombre) {
@@ -47,6 +51,7 @@ public class Cliente {
 
     /**
      * Obtiene el domicilio del cliente.
+     *
      * @return El domicilio del cliente.
      */
     public String getDomicilio() {
@@ -55,6 +60,7 @@ public class Cliente {
 
     /**
      * Le da un domicilio al cliente.
+     *
      * @param domicilio Domicilio del cliente.
      */
     public void setDomicilio(String domicilio) {
@@ -63,6 +69,7 @@ public class Cliente {
 
     /**
      * Obtiene la ciudad donde recide el cliente.
+     *
      * @return Ciudad del cliente.
      */
     public String getCiudad() {
@@ -71,6 +78,7 @@ public class Cliente {
 
     /**
      * Le da una ciudad de residencia al cliente.
+     *
      * @param ciudad Ciudad dell cliente.
      */
     public void setCiudad(String ciudad) {
@@ -79,6 +87,7 @@ public class Cliente {
 
     /**
      * Obtiene el RFC del cliente.
+     *
      * @return El RFC del cliente.
      */
     public String getRfc() {
@@ -87,6 +96,7 @@ public class Cliente {
 
     /**
      * Le da un RFC del cliente.
+     *
      * @param rfc RFC del cliente.
      */
     public void setRfc(String rfc) {
@@ -95,6 +105,7 @@ public class Cliente {
 
     /**
      * Obtiene el codigo postal del cliente.
+     *
      * @return El codigo postal del cliente.
      */
     public String getCp() {
@@ -103,10 +114,11 @@ public class Cliente {
 
     /**
      * Le da un codigo postal al cliente.
+     *
      * @param cp Codigo postal del cliente.
      */
     public void setCp(String cp) {
         this.cp = cp;
     }
-    
+
 }

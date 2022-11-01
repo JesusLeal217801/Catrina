@@ -8,7 +8,7 @@ import mx.itson.catrina.enumeradores.Tipo;
  * @author jesus
  */
 public class Movimiento {
-    
+
     private Date fecha;
     private String descripcion;
     private double cantidad;
@@ -16,6 +16,7 @@ public class Movimiento {
 
     /**
      * Obtiene la fecha en la que se hizo el movimiento.
+     *
      * @return La fecha en la que se hizo el movimiento.
      */
     public Date getFecha() {
@@ -24,6 +25,7 @@ public class Movimiento {
 
     /**
      * Le da una fecha a un objeto de la clase Movimiento.
+     *
      * @param fecha La fecha en la que se hizo un movimiento.
      */
     public void setFecha(Date fecha) {
@@ -32,6 +34,7 @@ public class Movimiento {
 
     /**
      * Obtiene la descripcion de un movimiento.
+     *
      * @return La descripcion de un movimiento.
      */
     public String getDescripcion() {
@@ -40,6 +43,7 @@ public class Movimiento {
 
     /**
      * Le da una descripcion a un objeto de la clase Movimiento.
+     *
      * @param descripcion La descripcion del movimiento.
      */
     public void setDescripcion(String descripcion) {
@@ -48,6 +52,7 @@ public class Movimiento {
 
     /**
      * Obtiene la cantidad de dinero que se manejo en ese movimiento.
+     *
      * @return La cantidad de dinero utilizada.
      */
     public double getCantidad() {
@@ -56,6 +61,7 @@ public class Movimiento {
 
     /**
      * Le da una cantidad de dinero al movimiento.
+     *
      * @param cantidad Cantidad de dinero.
      */
     public void setCantidad(double cantidad) {
@@ -64,6 +70,7 @@ public class Movimiento {
 
     /**
      * Obtiene el tipo de transaccion realizada.
+     *
      * @return Tipo de transaccion realizada.
      */
     public Tipo getTipo() {
@@ -72,10 +79,11 @@ public class Movimiento {
 
     /**
      * Le da un tipo de transaccion.
+     *
      * @param tipo Tipo de transaccion.
      */
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
-    
+
 }
