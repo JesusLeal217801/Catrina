@@ -9,7 +9,9 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import mx.itson.catrina.entidades.Estado;
@@ -550,6 +552,8 @@ public class Main extends javax.swing.JFrame {
                 String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
                 
                 Estado estado = new Estado().deserializar(contenido);
+                Locale local = new Locale("es", "MX");
+                NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(local);
                 
                 lblNombre.setText(estado.getCliente().getNombre());
                 lblRfc.setText(estado.getCliente().getRfc());
@@ -563,29 +567,55 @@ public class Main extends javax.swing.JFrame {
                 lblMoneda.setText(estado.getMoneda());
                 
                 double saldoInicial = 20000.00;
-                lblSaldoInicial.setText(String.valueOf(saldoInicial));
+                lblSaldoInicial.setText(String.valueOf(formatoMoneda.format(saldoInicial)));
                 
                 DefaultTableModel model = (DefaultTableModel) tblMovimientos.getModel();
                 model.setRowCount(0);
                 
-                DateFormat formatoFecha = new SimpleDateFormat("d '/' MM '/'yyyy");
+                DateFormat formatoFecha = new SimpleDateFormat("d'/'MM'/'yyyy");
+ 
+                double deposito = 0;
+                double retiro = 0;
+                double saldoFinal = 0;
+                double subTotal = saldoInicial;
+                
+                estado.getMovimientos().sort((m1, m2) -> m1.getFecha().compareTo(m2.getFecha()));
                 
                 for(Movimiento m: estado.getMovimientos()){
-
+                    
                     if(m.getTipo() == m.getTipo().DEPOSITO){
+                        
+                        subTotal = subTotal + m.getCantidad();
                         
                         model.addRow(new Object[] {
                         formatoFecha.format(m.getFecha()), 
                         m.getDescripcion(),
-                        m.getCantidad(), "",
-                        m.getCantidad()+saldoInicial});
+                        formatoMoneda.format(m.getCantidad()), "",
+                        formatoMoneda.format(subTotal)});
+                        
+                        deposito += m.getCantidad();
+                        
+                    }else if(m.getTipo() == m.getTipo().RETIRO){
+                        
+                        subTotal = subTotal - m.getCantidad();
+                        
+                        model.addRow(new Object[] {
+                        formatoFecha.format(m.getFecha()), 
+                        m.getDescripcion(),
+                        "", formatoMoneda.format(m.getCantidad()),
+                        formatoMoneda.format(subTotal)});
+                        
+                        retiro += m.getCantidad();
                         
                     }
                     
-                    model.addRow(new Object[] {
-                        m.getFecha(), m.getDescripcion(), "1",});
-                    
                 }
+                
+                saldoFinal = (saldoInicial + deposito) - retiro;
+                
+                lblDepositos.setText(String.valueOf(formatoMoneda.format(deposito)));
+                lblRetiros.setText(String.valueOf(formatoMoneda.format(retiro)));
+                lblSaldoFinal.setText(String.valueOf(formatoMoneda.format(saldoFinal)));
                 
                 //System.out.print(contenido);
             }
