@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.itson.morgana.ui;
 
 import java.io.File;
@@ -131,6 +126,11 @@ public class Main extends javax.swing.JFrame {
 
         btnSeleccionar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSeleccionar.setText("Seleccionar:");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -539,7 +539,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
+   
         try{
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -550,8 +550,9 @@ public class Main extends javax.swing.JFrame {
                 byte archivoBytes[] = Files.readAllBytes(archivo.toPath());
                 
                 String contenido = new String(archivoBytes, StandardCharsets.UTF_8);
-                
                 Estado estado = new Estado().deserializar(contenido);
+                
+                
                 Locale local = new Locale("es", "MX");
                 NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(local);
                 
@@ -581,9 +582,15 @@ public class Main extends javax.swing.JFrame {
                 
                 estado.getMovimientos().sort((m1, m2) -> m1.getFecha().compareTo(m2.getFecha()));
                 
+                String meses = cmbMeses.getSelectedItem().toString();
+                
+                int mesNumero = estado.obtenerMes(meses);
+                
                 for(Movimiento m: estado.getMovimientos()){
                     
-                    if(m.getTipo() == m.getTipo().DEPOSITO){
+                    if(mesNumero == (m.getFecha().getMonth()+1)){
+                        
+                        if(m.getTipo() == m.getTipo().DEPOSITO){
                         
                         subTotal = subTotal + m.getCantidad();
                         
@@ -606,6 +613,8 @@ public class Main extends javax.swing.JFrame {
                         formatoMoneda.format(subTotal)});
                         
                         retiro += m.getCantidad();
+                        
+                    }
                         
                     }
                     
@@ -640,6 +649,10 @@ public class Main extends javax.swing.JFrame {
     private void jLabel32AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel32AncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel32AncestorAdded
+
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     /**
      * @param args the command line arguments
